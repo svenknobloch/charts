@@ -26,7 +26,6 @@
 | `user`                | User to create                                | `postgres`                    |
 | `password`            | Password for the user                         | Value of `config.user`        |
 | `database`            | Database to create                            | Value of `config.user`        |
-| `pgdata`              | Directory for the database files              | `/var/lib/postgresql/data`    |
 |                       |                                               |                               |
 
 ### Service (`service`)

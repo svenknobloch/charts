@@ -21,10 +21,6 @@ questions:
   label: "Database"
   description: "Database to create"
   type: string
-- variable: config.pgdata
-  label: "PgData"
-  description: "Directory for database files"
-  type: string
 # Persistence
 - variable: persistence.enabled
   label: "Enable Persistence"

@@ -39,10 +39,8 @@ spec:
                 name: {{ template "postgres.fullname" .}}
                 key: password
           {{- end }}
-          {{- if .Values.config.pgdata }}
           - name: PGDATA
-            value: {{ .Values.config.pgdata }}
-          {{- end }}
+            value: "/var/lib/postgresql/data/pgdata"
           {{- if .Values.config.database }}
           - name: POSTGRES_DB
             value: {{ .Values.config.database }}
@@ -51,16 +49,25 @@ spec:
           livenessProbe:
             exec:
               command:
-                - pg_isready
+              - "pg_isready"
+              - "-h"
+              - "localhost"
+              - "-U"
+              - {{ .Values.config.user | default "postgres" | quote}}
           readinessProbe:
             exec:
               command:
-                - pg_isready
+              - "pg_isready"
+              - "-h"
+              - "localhost"
+              - "-U"
+              - {{ .Values.config.user | default "postgres" | quote}}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
           - name: data
-            mountPath: "/var/lib/postgresql/data"
+            mountPath: "/var/lib/postgresql/data/pgdata"
+            subPath: "pgdata"
       volumes:
       - name: data
       {{- if .Values.persistence.enabled }}

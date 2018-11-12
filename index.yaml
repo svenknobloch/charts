@@ -1,0 +1,22 @@
+apiVersion: v1
+entries:
+  postgres:
+  - apiVersion: v1
+    appVersion: "11.0"
+    created: 2018-11-12T17:35:38.841021+01:00
+    description: A Helm chart for deploying a non-replicated postgres database
+    digest: ef2e29be69aca159e777d8eaf1532b6a0058cb668ee637d74b8d54742bcaef47
+    icon: https://www.postgresql.org/media/img/about/press/elephant.png
+    keywords:
+    - database
+    - postgres
+    - postgresql
+    maintainers:
+    - email: sven@knobotech.com
+      name: Sven Knobloch
+      url: knobotech.com
+    name: postgres
+    urls:
+    - postgres-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-11-12T17:35:38.840688+01:00

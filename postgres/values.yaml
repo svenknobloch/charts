@@ -1,0 +1,25 @@
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: postgres
+  tag: 11-alpine
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5432
+
+config: {}
+
+persistence:
+  enabled: false
+  accessModes:
+  - ReadWriteOnce
+  size: 8Gi
+  storageClass: "-"
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}

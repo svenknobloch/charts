@@ -4,12 +4,11 @@ questions:
   label: "User"
   description: "User to create"
   type: string
-  required: false
 - variable: config.password
   label: "Password"
   description: "Password for the user"
   type: password
-  required: false
+  required: true
 - variable: config.database
   label: "Database"
   description: "Database to create"

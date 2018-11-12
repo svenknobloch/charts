@@ -60,7 +60,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
           - name: data
-            mountPath: {{ .Values.config.pgdata | default "/var/lib/postgresql/data" }}
+            mountPath: "/var/lib/postgresql/data"
       volumes:
       - name: data
       {{- if .Values.persistence.enabled }}

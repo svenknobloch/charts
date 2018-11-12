@@ -1,4 +1,0 @@
-config.user
-config.password
-config.database
-config.pgdata

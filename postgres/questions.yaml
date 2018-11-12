@@ -1,0 +1,43 @@
+categories:
+- General
+- Image
+- Config
+- Service
+- Persistence
+
+questions:
+# Config
+- variable: config.user
+  label: "User"
+  description: "User to create"
+  type: string
+  required: false
+- variable: config.password
+  label: "Password"
+  description: "Password for the user"
+  type: password
+  required: false
+- variable: config.database
+  label: "Database"
+  description: "Database to create"
+  type: string
+- variable: config.pgdata
+  label: "PgData"
+  description: "Directory for database files"
+  type: string
+# Persistence
+- variable: persistence.enabled
+  label: "Enable Persistence"
+  description: "Whether to enable persistence"
+  type: boolean
+  show_subquestion_if: true
+  subquestions:
+  - variable: persistence.size
+    label: "Size"
+    description: "Size of the volume claim"
+    type: string
+    default: "8Gi"
+  - variable: persistence.storageClass
+    label: "Storage Class"
+    description: "Storage class to use"
+    type: storageclass

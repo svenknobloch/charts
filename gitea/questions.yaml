@@ -6,6 +6,7 @@ questions:
   description: "Name for Gitea to display"
   type: string
 - variable: config.runMode
+  group: "App Settings"
   label: "Run Mode"
   description: "Gitea run mode"
   type: enum
@@ -17,26 +18,12 @@ questions:
   label: "SSH Domain"
   description: "Domain for ssh clone urls"
   type: string
-- variable: config.sshPort
-  group: "App Settings"
-  label: "SSH Port"
-  description: "Port for ssh clone urls"
-  type: int
-  min: 1
-  max: 65535
 - variable: config.disableSSH
   group: "App Settings"
   label: "Disable SSH"
   description: "Whether to disable ssh"
   type: boolean
   default: false
-- variable: config.httpPort
-  group: "App Settings"
-  label: "HTTP Port"
-  description: "HTTP listen port"
-  type: int
-  min: 1
-  max: 65535
 - variable: config.rootUrl
   group: "App Settings"
   label: "Root URL"

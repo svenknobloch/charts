@@ -1,0 +1,6 @@
+dependencies:
+- name: postgres
+  repository: https://github.com/svenknobloch/charts/raw/master/
+  version: 0.1.0
+digest: sha256:9cc0466027f4ef4ab3034aa749f96c7cd7e39a54670d0f43b08c888743b8dd19
+generated: 2018-11-13T14:30:59.684565+01:00

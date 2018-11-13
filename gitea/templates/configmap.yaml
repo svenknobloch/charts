@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "gitea.fullname" . }}-scripts
+data:
+  init.sh: |-
+{{ tpl (.Files.Get "files/init.sh") . | indent 4 }}

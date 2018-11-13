@@ -1,9 +1,27 @@
 apiVersion: v1
 entries:
+  gitea:
+  - apiVersion: v1
+    appVersion: "1.6"
+    created: 2018-11-13T14:57:51.992649+01:00
+    description: A Helm chart for a Gitea git server
+    digest: a106499d1dce4260d80112b775229093eebea933c230bf073812d386c99d8eb5
+    icon: https://docs.gitea.io/images/gitea.png
+    keywords:
+    - gitea
+    - git
+    - vcs
+    maintainers:
+    - email: sven@knobotech.com
+      name: Sven Knobloch
+    name: gitea
+    urls:
+    - gitea-0.1.0.tgz
+    version: 0.1.0
   postgres:
   - apiVersion: v1
     appVersion: "11.0"
-    created: 2018-11-13T14:29:53.087479+01:00
+    created: 2018-11-13T14:57:51.993219+01:00
     description: A Helm chart for deploying a non-replicated postgres database
     digest: 9289569f412677a5ee8f6acc28652d1fbebe7ea4b09e4a59f21eac2c06b689d1
     icon: https://www.postgresql.org/media/img/about/press/elephant.png
@@ -19,4 +37,4 @@ entries:
     urls:
     - postgres-0.1.0.tgz
     version: 0.1.0
-generated: 2018-11-13T14:29:53.087132+01:00
+generated: 2018-11-13T14:57:51.99207+01:00

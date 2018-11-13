@@ -1,0 +1,146 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ include "gitea.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "gitea.name" . }}
+    helm.sh/chart: {{ include "gitea.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "gitea.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "gitea.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      initContainers:
+        - name: init
+          image: busybox:latest
+          imagePullPolicy: IfNotPresent
+          command: ["sh", "/scripts/init.sh"]
+          volumeMounts:
+          - name: gitea-scripts
+            mountPath: /scripts
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          - name: http
+            containerPort: {{ .Values.config.httpPort | default 3000 }}
+            protocol: TCP
+          env:
+          {{- if .Values.config.appName }}
+          - name: APP_NAME
+            value: {{ .Values.config.appName }}
+          {{- end }}
+          {{- if .Values.config.runMode }}
+          - name: RUN_MODE
+            value: {{ .Values.config.runMode }}
+          {{- end }}
+          {{- if .Values.config.sshDomain }}
+          - name: SSH_DOMAIN
+            value: {{ .Values.config.sshDomain }}
+          {{- end }}
+          {{- if .Values.config.sshPort }}
+          - name: SSH_PORT
+            value: {{ .Values.config.sshPort }}
+          {{- end }}
+          {{- if .Values.config.disableSSH }}
+          - name: DISABLE_SSH
+            value: {{ .Values.config.disableSSH | quote }}
+          {{- end }}
+          {{- if .Values.config.httpPort }}
+          - name: HTTP_PORT
+            value: {{ .Values.config.httpPort }}
+          {{- end }}
+          {{- if .Values.config.rootUrl }}
+          - name: ROOT_URL
+            value: {{ .Values.config.rootUrl }}
+          {{- end }}
+          - name: DB_TYPE
+            value: postgres
+          - name: DB_HOST
+            value: "{{ template "gitea.database" . }}:5432"
+          {{- if .Values.database.config.database }}
+          - name: DB_NAME
+            value: {{ .Values.database.config.database }}
+          {{- end }}
+          {{- if .Values.database.config.user }}
+          - name: DB_USER
+            value: {{ .Values.database.config.user }}
+          {{- end }}
+          {{- if .Values.database.config.password }}
+          - name: DB_PASSWD
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "gitea.database" . }}
+                key: password
+          {{- end }}
+          {{- if .Values.config.installLock }}
+          - name: INSTALL_LOCK
+            value: {{ .Values.config.installLock | quote }}
+          {{- end }}
+          - name: SECRET_KEY
+            valueFrom: 
+              secretKeyRef:
+                name: {{ template "gitea.fullname" . }}
+                key: secretKey
+          {{- if .Values.config.disableRegistration }}
+          - name: DISABLE_REGISTRATION
+            value: {{ .Values.config.disableRegistration | quote }}
+          {{- end }}
+          {{- if .Values.config.requireSignInView }}
+          - name: REQUIRE_SIGN_IN_VIEW
+            value: {{ .Values.config.requireSignInView | quote }}
+          {{- end }}
+          {{- if .Values.config.userUID }}
+          - name: USER_UID
+            value: {{ .Values.config.userUID }}
+          {{- end }}
+          {{- if .Values.config.userGID }}
+          - name: USER_GID
+            value: {{ .Values.config.userGID }}
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+          - name: data
+            mountPath: "/data"
+      volumes:
+      - name: gitea-scripts
+        configMap:
+          name: {{ template "gitea.fullname" . }}-scripts
+      - name: data
+      {{- if .Values.global.persistence }}
+        persistentVolumeClaim:
+          claimName: {{ template "gitea.fullname" . }}
+      {{- else }}
+        emptyDir: {}
+      {{- end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

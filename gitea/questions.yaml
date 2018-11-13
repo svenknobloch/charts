@@ -1,0 +1,88 @@
+questions:
+# Config
+- variable: config.appName
+  label: "App Name"
+  description: "Name for Gitea to display"
+  type: string
+- variable: config.runMode
+  label: "Run Mode"
+  description: "Gitea run mode"
+  type: string
+  options:
+    - "dev"
+    - "prod"
+- variable: config.sshDomain
+  label: "SSH Domain"
+  description: "Domain for ssh clone urls"
+  type: string
+- variable: config.sshPort
+  label: "SSH Port"
+  description: "Port for ssh clone urls"
+  type: int
+- variable: config.disableSSH
+  label: "Disable SSH"
+  description: "Whether to disable ssh"
+  type: boolean
+  default: false
+- variable: config.httpPort
+  label: "HTTP Port"
+  description: "HTTP listen port"
+  type: int
+- variable: config.rootUrl
+  label: "Root URL"
+  description: "Override for generated public URL"
+  type: string
+- variable: config.secretKey
+  label: "Secret Key"
+  description: "Gitea secret key"
+  type: password
+  required: true
+- variable: config.installLock
+  label: "Install Lock"
+  description: "Disallow access to install page"
+  type: boolean
+  default: false
+- variable: config.requireSignIn
+  label: "Require Sign In"
+  description: "Require logging in to view any pages"
+  type: boolean
+  default: false
+- variable: config.userUID
+  label: "UID"
+  description: "Unix UID of user"
+  type: int
+- variable: config.userGID
+  label: "GID"
+  description: "Unix GID of user"
+  type: int
+# Database
+- variable: database.config.password
+  label: "Database Password"
+  description: "Password for the database"
+  type: password
+  required: true
+# Persistence
+- variable: global.persistence
+  label: "Enable Persistence"
+  description: "Whether to enable persistence"
+  type: boolean
+  show_subquestion_if: true
+  subquestions:
+  - variable: persistence.size
+    label: "Size"
+    description: "Size of the volume claim"
+    type: string
+    default: "8Gi"
+  - variable: persistence.storageClass
+    label: "Storage Class"
+    description: "Storage class to use"
+    type: storageclass
+  - variable: database.persistence.size
+    label: "Database Size"
+    description: "Size of the database volume claim"
+    type: string
+    default: "8Gi"
+  - variable: database.persistence.storageClass
+    label: "Storage Class"
+    description: "Storage class to use for database"
+    type: storageclass

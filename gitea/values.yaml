@@ -1,0 +1,36 @@
+image:
+  repository: gitea/gitea
+  tag: 1.6
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+config: {}
+
+persistence:
+  accessModes:
+  - ReadWriteOnce
+  size: 8Gi
+  storageClass: "-"
+
+ingress:
+  enabled: false
+  annotations: {}
+  path: /
+  hosts: []
+  tls: []
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+database:
+  config:
+    user: root
+    database: gitea

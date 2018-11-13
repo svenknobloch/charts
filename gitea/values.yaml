@@ -8,7 +8,8 @@ fullnameOverride: ""
 
 service:
   type: ClusterIP
-  port: 80
+  httpPort: 80
+  sshPort: 22
 
 config: {}
 

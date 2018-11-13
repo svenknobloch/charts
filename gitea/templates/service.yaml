@@ -10,10 +10,13 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.httpPort }}
       targetPort: {{ default 3000 .Values.config.httpPort }}
       protocol: TCP
       name: http
+    - port: {{ .Values.service.sshPort }}
+      protocol: TCP
+      name: ssh
   selector:
     app.kubernetes.io/name: {{ include "gitea.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

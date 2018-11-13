@@ -1,6 +1,7 @@
 questions:
 # Config
 - variable: config.appName
+  group: "App Settings"
   label: "App Name"
   description: "Name for Gitea to display"
   type: string
@@ -12,39 +13,49 @@ questions:
     - "dev"
     - "prod"
 - variable: config.sshDomain
+  group: "App Settings"
   label: "SSH Domain"
   description: "Domain for ssh clone urls"
   type: string
 - variable: config.sshPort
+  group: "App Settings"
   label: "SSH Port"
   description: "Port for ssh clone urls"
   type: int
+  min: 1
+  max: 65535
 - variable: config.disableSSH
+  group: "App Settings"
   label: "Disable SSH"
   description: "Whether to disable ssh"
   type: boolean
   default: false
 - variable: config.httpPort
+  group: "App Settings"
   label: "HTTP Port"
   description: "HTTP listen port"
   type: int
   min: 1
   max: 65535
 - variable: config.rootUrl
+  group: "App Settings"
   label: "Root URL"
   description: "Override for generated public URL"
   type: string
 - variable: config.secretKey
+  group: "App Settings"
   label: "Secret Key"
   description: "Gitea secret key"
   type: password
   required: true
 - variable: config.installLock
+  group: "App Settings"
   label: "Install Lock"
   description: "Disallow access to install page"
   type: boolean
   default: false
 - variable: config.requireSignIn
+  group: "App Settings"
   label: "Require Sign In"
   description: "Require logging in to view any pages"
   type: boolean

@@ -1,15 +1,18 @@
 questions:
 # Config
 - variable: config.user
+  group: "App Settings"
   label: "User"
   description: "User to create"
   type: string
 - variable: config.password
+  group: "App Settings"
   label: "Password"
   description: "Password for the user"
   type: password
   required: true
 - variable: config.database
+  group: "App Settings"
   label: "Database"
   description: "Database to create"
   type: string

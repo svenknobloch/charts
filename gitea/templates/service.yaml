@@ -8,15 +8,33 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.service.http.type }}
   ports:
-    - port: {{ .Values.service.httpPort }}
+    - port: {{ .Values.service.http.port }}
       targetPort: {{ default 3000 .Values.config.httpPort }}
       protocol: TCP
       name: http
-    - port: {{ .Values.service.sshPort }}
-      protocol: TCP
-      name: ssh
+  selector:
+    app.kubernetes.io/name: {{ include "gitea.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gitea.fullname" . }}-ssh
+  labels:
+    app.kubernetes.io/name: {{ include "gitea.name" . }}
+    helm.sh/chart: {{ include "gitea.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.ssh.type }}
+  ports:
+    - port: {{ .Values.service.ssh.port }}
+      targetPort: ssh
+      {{- if .Values.service.ssh.nodePort }}
+      nodePort: {{ .Values.service.ssh.nodePort }}
+      {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "gitea.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

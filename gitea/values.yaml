@@ -7,9 +7,12 @@ nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: ClusterIP
-  httpPort: 80
-  sshPort: 22
+  http:
+    type: ClusterIP
+    port: 80
+  ssh:
+    type: NodePort
+    port: 22
 
 config: {}
 

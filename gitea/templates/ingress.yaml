@@ -15,9 +15,6 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  backend:
-    serviceName: {{ template "gitea.fullname" . }}
-    servicePort: {{ .Values.service.sshPort }}
 {{- if .Values.ingress.tls }}
   tls:
   {{- range .Values.ingress.tls }}

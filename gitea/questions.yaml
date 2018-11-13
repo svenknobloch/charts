@@ -1,5 +1,5 @@
 questions:
-# Config
+# App Settings
 - variable: config.appName
   group: "App Settings"
   label: "App Name"
@@ -54,6 +54,32 @@ questions:
   description: "Password for the database"
   type: password
   required: true
+# Ingress
+- variable: ingress.enabled
+  group: "Ingress"
+  label: "Ingress"
+  description: "Whether to enable ingress"
+  type: boolean
+  default: true
+  show_subquestion_if: true
+  subquestions:
+    - variable: ingress.hosts[0]
+      group: "Ingress"
+      label: "Hostname"
+      type: hostname
+      default: "xip.io"
+      required: true
+    - variable: ingress.tls[0].hosts[0]
+      group: "Ingress"
+      label: "TLS Host"
+      type: hostname
+      required: true
+    - variable: ingress.tls[0].secretName
+      group: "Ingress"
+      label: "TLS Secret"
+      type: string
+
+      
 # Persistence
 - variable: global.persistence
   group: "Persistence"

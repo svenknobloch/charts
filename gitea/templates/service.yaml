@@ -11,7 +11,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ default 3000 .Values.config.httpPort }}
       protocol: TCP
       name: http
   selector:

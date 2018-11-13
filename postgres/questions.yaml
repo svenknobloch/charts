@@ -1,5 +1,5 @@
 questions:
-# Config
+# App Settings
 - variable: config.user
   group: "App Settings"
   label: "User"

@@ -1,31 +1,37 @@
 questions:
 # Config
 - variable: config.user
+  group: "Config"
   label: "User"
   description: "User to create"
   type: string
 - variable: config.password
+  group: "Config"
   label: "Password"
   description: "Password for the user"
   type: password
   required: true
 - variable: config.database
+  group: "Config"
   label: "Database"
   description: "Database to create"
   type: string
 # Persistence
 - variable: global.persistence
+  group: "Persistence"
   label: "Enable Persistence"
   description: "Whether to enable persistence"
   type: boolean
   show_subquestion_if: true
   subquestions:
   - variable: persistence.size
+    group: "Persistence"
     label: "Size"
     description: "Size of the volume claim"
     type: string
     default: "8Gi"
   - variable: persistence.storageClass
+    group: "Persistence"
     label: "Storage Class"
     description: "Storage class to use"
     type: storageclass

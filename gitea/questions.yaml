@@ -7,7 +7,7 @@ questions:
 - variable: config.runMode
   label: "Run Mode"
   description: "Gitea run mode"
-  type: string
+  type: enum
   options:
     - "dev"
     - "prod"
@@ -28,6 +28,8 @@ questions:
   label: "HTTP Port"
   description: "HTTP listen port"
   type: int
+  min: 1
+  max: 65535
 - variable: config.rootUrl
   label: "Root URL"
   description: "Override for generated public URL"
@@ -47,42 +49,40 @@ questions:
   description: "Require logging in to view any pages"
   type: boolean
   default: false
-- variable: config.userUID
-  label: "UID"
-  description: "Unix UID of user"
-  type: int
-- variable: config.userGID
-  label: "GID"
-  description: "Unix GID of user"
-  type: int
 # Database
 - variable: database.config.password
+  group: "Database"
   label: "Database Password"
   description: "Password for the database"
   type: password
   required: true
 # Persistence
 - variable: global.persistence
+  group: "Persistence"
   label: "Enable Persistence"
   description: "Whether to enable persistence"
   type: boolean
   show_subquestion_if: true
   subquestions:
   - variable: persistence.size
+    group: "Persistence"
     label: "Size"
     description: "Size of the volume claim"
     type: string
     default: "8Gi"
   - variable: persistence.storageClass
+    group: "Persistence"
     label: "Storage Class"
     description: "Storage class to use"
     type: storageclass
   - variable: database.persistence.size
+    group: "Persistence"
     label: "Database Size"
     description: "Size of the database volume claim"
     type: string
     default: "8Gi"
   - variable: database.persistence.storageClass
-    label: "Storage Class"
+    group: "Persistence"
+    label: "Database Storage Class"
     description: "Storage class to use for database"
     type: storageclass

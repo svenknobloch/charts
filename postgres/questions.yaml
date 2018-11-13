@@ -1,18 +1,15 @@
 questions:
 # Config
 - variable: config.user
-  group: "Config"
   label: "User"
   description: "User to create"
   type: string
 - variable: config.password
-  group: "Config"
   label: "Password"
   description: "Password for the user"
   type: password
   required: true
 - variable: config.database
-  group: "Config"
   label: "Database"
   description: "Database to create"
   type: string

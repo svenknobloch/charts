@@ -38,3 +38,6 @@ database:
   config:
     user: root
     database: gitea
+
+global:
+  persistence: false

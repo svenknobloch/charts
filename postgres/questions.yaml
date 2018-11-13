@@ -14,7 +14,7 @@ questions:
   description: "Database to create"
   type: string
 # Persistence
-- variable: persistence.enabled
+- variable: global.persistence
   label: "Enable Persistence"
   description: "Whether to enable persistence"
   type: boolean

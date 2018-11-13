@@ -38,8 +38,13 @@
 ### Persistence (`persistence`)
 | Parameter             | Description                                   | Default                       |
 | --------------------- | --------------------------------------------- | ----------------------------- |
-| `enabled`             | Whether to enable persistence                 | `false`                       |
 | `accessModes`         | Volume access modes                           | `[ ReadWriteOnce ]`           |
 | `size`                | Size of the volume claim                      | `8Gi`                         |
 | `storageClass`        | Storage class to use                          | `-`                           |
+|                       |                                               |                               |
+
+### Global (`global`)
+| Parameter             | Description                                   | Default                       |
+| --------------------- | --------------------------------------------- | ----------------------------- |
+| `persistence`         | Whether to enable persistence                 | `false`                       |
 |                       |                                               |                               |

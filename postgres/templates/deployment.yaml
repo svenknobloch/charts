@@ -70,7 +70,7 @@ spec:
             subPath: "pgdata"
       volumes:
       - name: data
-      {{- if .Values.persistence.enabled }}
+      {{- if .Values.global.persistence }}
         persistentVolumeClaim:
           claimName: {{ template "postgres.fullname" . }}
       {{- else }}

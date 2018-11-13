@@ -3,9 +3,9 @@ entries:
   postgres:
   - apiVersion: v1
     appVersion: "11.0"
-    created: 2018-11-12T18:10:51.906229+01:00
+    created: 2018-11-13T14:29:53.087479+01:00
     description: A Helm chart for deploying a non-replicated postgres database
-    digest: b0a7e582f8209f1748ccbb9d0792e941165197284f7b1524b9b61d9af8554900
+    digest: 9289569f412677a5ee8f6acc28652d1fbebe7ea4b09e4a59f21eac2c06b689d1
     icon: https://www.postgresql.org/media/img/about/press/elephant.png
     keywords:
     - database
@@ -19,4 +19,4 @@ entries:
     urls:
     - postgres-0.1.0.tgz
     version: 0.1.0
-generated: 2018-11-12T18:10:51.905844+01:00
+generated: 2018-11-13T14:29:53.087132+01:00

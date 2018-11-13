@@ -13,7 +13,7 @@ service:
 config: {}
 
 persistence:
-  enabled: false
+  existingClaim: ""
   accessModes:
   - ReadWriteOnce
   size: 8Gi
@@ -23,3 +23,6 @@ resources: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+global:
+  persistence: false

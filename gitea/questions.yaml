@@ -69,6 +69,16 @@ questions:
       type: hostname
       default: "xip.io"
       required: true
+
+# TLS
+- variable: ingress.tlsEnabled
+  group: "TLS"
+  label: "TLS Enabled"
+  description: "Whether to enable TLS"
+  type: boolean
+  default: false
+  show_subquestion_if: true
+  subquestions:
     - variable: ingress.tls[0].hosts[0]
       group: "Ingress"
       label: "TLS Host"
@@ -78,7 +88,6 @@ questions:
       group: "Ingress"
       label: "TLS Secret"
       type: string
-
       
 # Persistence
 - variable: global.persistence

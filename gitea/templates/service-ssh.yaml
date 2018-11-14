@@ -11,7 +11,7 @@ spec:
   type: {{ .Values.service.ssh.type }}
   ports:
     - port: {{ .Values.service.ssh.port }}
-      targetPort: ssh
+      targetPort: 22
       protocol: TCP
       {{- if .Values.service.ssh.nodePort }}
       nodePort: {{ .Values.service.ssh.nodePort }}

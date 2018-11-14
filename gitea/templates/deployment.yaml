@@ -19,14 +19,6 @@ spec:
         app.kubernetes.io/name: {{ include "gitea.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      initContainers:
-        - name: init
-          image: busybox:latest
-          imagePullPolicy: IfNotPresent
-          command: ["sh", "/scripts/init.sh"]
-          volumeMounts:
-          - name: gitea-scripts
-            mountPath: /scripts
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -122,9 +114,6 @@ spec:
           - name: data
             mountPath: "/data"
       volumes:
-      - name: gitea-scripts
-        configMap:
-          name: {{ template "gitea.fullname" . }}-scripts
       - name: data
       {{- if .Values.global.persistence }}
         persistentVolumeClaim:
